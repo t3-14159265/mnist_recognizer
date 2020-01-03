@@ -14,7 +14,7 @@ IMG_ROWS, IMG_COLS = 28, 28 #input dimensions
 INPUT_SHAPE = (IMG_ROWS, IMG_COLS, 1) # GREYSCALE IMAGE WITH ONE 1 COLOUR CHANNEL
 NB_CLASSES = 10 # digits 0 - 9 to be 
 
-#define model
+#LENET MODEL
 def build(input_shape, classes):
     model = models.Sequential()
     model.add(layers.Convolution2D(20, (5,5), activation='relu', input_shape=input_shape))
@@ -26,9 +26,13 @@ def build(input_shape, classes):
     model.add(layers.Dense(classes, activation="softmax"))
     return model
 
-
+#import the data
 (x_train, y_train) , (x_test, y_test) = datasets.mnist.load_data()
-#reshape
+
+#check data shape
+#print('x_train shape: ', x_train.shape)
+
+#reshape with one color channel for greyscale
 x_train = x_train.reshape((60000, 28, 28, 1))
 x_test = x_test.reshape((10000, 28, 28, 1))
 
@@ -38,7 +42,7 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
 
-#one hot encode the targets
+#one-hot-encode the targets
 y_train = tf.keras.utils.to_categorical(y_train, NB_CLASSES)
 y_test = tf.keras.utils.to_categorical(y_test, NB_CLASSES)
 
