@@ -58,7 +58,7 @@ callbacks = [
     ]
 
 #fit
-history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, verbose=VERBOSE, validation_split=VALIDATION_SPLIT, callbacks=callbacks)
+history = model.fit(X, t, batch_size=BATCH_SIZE, epochs=EPOCHS, verbose=VERBOSE, validation_split=VALIDATION_SPLIT, callbacks=callbacks)
 score = model.evaluate(x_test, y_test, verbose=VERBOSE)
 print("\nTest score:", score[0])
 print('Test accuracy:', score[1])
